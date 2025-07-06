@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <PackageProjectUrl>https://github.com/GennadyGS/WireMock.Net.Routing</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/GennadyGS/WireMock.Net.Routing</RepositoryUrl>
+    <PackageTags>WireMock;Routing</PackageTags>
+    <Description>WireMock.Net.Routing is a modern .NET library for [describe purpose].</Description>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+  </PropertyGroup>
+</Project>
