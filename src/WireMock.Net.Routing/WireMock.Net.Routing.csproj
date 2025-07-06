@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Company>Your Company</Company>
+    <PackageDescription>WireMock.Net.Routing is a modern .NET library for [describe purpose].</PackageDescription>
+    <RepositoryUrl>https://github.com/your-org/WireMock.Net.Routing</RepositoryUrl>
+    <PackageId>WireMock.Net.Routing</PackageId>
+    <RepositoryType>git</RepositoryType>
+    <Authors>Your Name</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0</Version>
+    <PackageTags>WireMock.Net.Routing;dotnet;nuget</PackageTags>
+  </PropertyGroup>
+</Project>
