@@ -8,6 +8,7 @@
     <LangVersion>13.0</LangVersion>
     <IsPackable>false</IsPackable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
   <Import Project="$(MSBuildThisFileDirectory)/codeAnalysis/CodeAnalysis.targets"/>
