@@ -355,7 +355,7 @@
     <Rule Id="S4433" Action="Warning"/>
     <Rule Id="S4456" Action="Warning"/>
     <Rule Id="S4457" Action="None"/>
-    <Rule Id="S4462" Action="None"/>
+    <Rule Id="S4462" Action="Warning"/>
     <Rule Id="S4487" Action="Warning"/>
     <Rule Id="S4524" Action="Warning"/>
     <Rule Id="S4545" Action="Warning"/>
@@ -686,9 +686,9 @@
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers.DocumentationRules">
     <Rule Id="SA1600" Action="None"/>
     <!-- Elements should be documented -->
-    <Rule Id="SA1601" Action="None"/>
+    <Rule Id="SA1601" Action="Warning"/>
     <!-- Partial elements should be documented -->
-    <Rule Id="SA1602" Action="None"/>
+    <Rule Id="SA1602" Action="Warning"/>
     <!-- Enumeration items should be documented -->
     <Rule Id="SA1603" Action="None"/>
     <!-- Documentation should contain valid XML -->
@@ -790,8 +790,6 @@
     <!-- Do not use placeholder elements -->
   </Rules>
   <Rules AnalyzerId="Menees.Analyzers" RuleNamespace="Menees.Analyzers">
-    <Rule Id="MEN007" Action="None"/>
-    <Rule Id="MEN009" Action="None"/>
     <Rule Id="MEN016" Action="None"/>
   </Rules>
 </RuleSet>
