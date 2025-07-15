@@ -13,4 +13,9 @@
   <ItemGroup>
     <PackageReference Include="WireMock.Net" Version="1.8.14" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Link="README.md" Pack="true" PackagePath="" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+  </ItemGroup>
 </Project>
