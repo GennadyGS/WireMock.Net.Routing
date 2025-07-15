@@ -10,19 +10,40 @@ using WireMock.Server;
 
 namespace WireMock.Net.Routing;
 
-public sealed class WireMockRouter
+    /// <summary>
+    /// Provides routing and request mapping functionality for WireMock.Net,
+    /// mimicking ASP.NET Core Minimal APIs routing style.
+    /// </summary>
+    public sealed class WireMockRouter
 {
     private readonly WireMockServer _server;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="WireMockRouter"/> class.
+    /// </summary>
+    /// <param name="server">The WireMock server instance.</param>
     public WireMockRouter(WireMockServer server)
     {
         _server = server;
     }
 
+    /// <summary>
+    /// Gets or initializes the collection of middleware for the router.
+    /// </summary>
     public IReadOnlyCollection<WireMockMiddleware> MiddlewareCollection { get; init; } = [];
 
+    /// <summary>
+    /// Gets or initializes the default JSON serializer settings for the router.
+    /// </summary>
     public JsonSerializerSettings? DefaultJsonSettings { get; init; }
 
+    /// <summary>
+    /// Maps a route to a synchronous request handler.
+    /// </summary>
+    /// <param name="method">The HTTP method.</param>
+    /// <param name="pattern">The route pattern.</param>
+    /// <param name="requestHandler">The request handler function.</param>
+    /// <returns>The current <see cref="WireMockRouter"/> instance.</returns>
     public WireMockRouter Map(
         string method, string pattern, Func<WireMockRequestInfo, object?> requestHandler)
     {
@@ -32,6 +53,13 @@ public sealed class WireMockRouter
         return Map(method, pattern, CreateResponse);
     }
 
+    /// <summary>
+    /// Maps a route to an asynchronous request handler.
+    /// </summary>
+    /// <param name="method">The HTTP method.</param>
+    /// <param name="pattern">The route pattern.</param>
+    /// <param name="requestHandler">The asynchronous request handler function.</param>
+    /// <returns>The current <see cref="WireMockRouter"/> instance.</returns>
     public WireMockRouter Map(
         string method, string pattern, Func<WireMockRequestInfo, Task<object?>> requestHandler)
     {
@@ -41,6 +69,15 @@ public sealed class WireMockRouter
         return Map(method, pattern, CreateResponseAsync);
     }
 
+    /// <summary>
+    /// Maps a route to a request handler with a typed body.
+    /// </summary>
+    /// <typeparam name="TRequest">The type of the request body.</typeparam>
+    /// <param name="method">The HTTP method.</param>
+    /// <param name="pattern">The route pattern.</param>
+    /// <param name="requestHandler">The request handler function.</param>
+    /// <param name="jsonSettings">Optional JSON serializer settings.</param>
+    /// <returns>The current <see cref="WireMockRouter"/> instance.</returns>
     public WireMockRouter Map<TRequest>(
         string method,
         string pattern,
