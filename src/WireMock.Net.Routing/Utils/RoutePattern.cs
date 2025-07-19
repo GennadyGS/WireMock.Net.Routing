@@ -88,10 +88,6 @@ internal static class RoutePattern
 
         public abstract string GetRegex();
 
-        [SuppressMessage(
-            "Minor Code Smell",
-            "S3253:Constructor and destructor declarations should not be redundant",
-            Justification = "Bug in analyzer, default constructor cannot be removed.")]
         private sealed record StringArgType() : ArgType("string")
         {
             public override object Parse(string input) => input;
@@ -99,10 +95,6 @@ internal static class RoutePattern
             public override string GetRegex() => @".*";
         }
 
-        [SuppressMessage(
-            "Minor Code Smell",
-            "S3253:Constructor and destructor declarations should not be redundant",
-            Justification = "Bug in analyzer, default constructor cannot be removed.")]
         private sealed record IntArgType() : ArgType("int")
         {
             public override object Parse(string input) => int.Parse(input);
