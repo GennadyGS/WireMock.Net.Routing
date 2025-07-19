@@ -12,7 +12,9 @@
 ## Features
 
 - Minimal API-style route definitions for WireMock.Net
-- Strongly-typed request/response handling
+- Strongly-typed request handling
+- Routing parameters with constraints (`int` and `string` are currently supported)
+- Asynchronous handlers
 - Fluent, composable routing extensions
 - Easy integration with existing WireMock.Net servers
 - .NET 8+ support
@@ -32,43 +34,49 @@ dotnet add package WireMock.Net.Routing
 ## Quick Start
 
 ```csharp
-using WireMock.Server;
+using System.Net.Http.Json;
 using WireMock.Net.Routing;
+using WireMock.Net.Routing.Extensions;
+using WireMock.Server;
 
 var server = WireMockServer.Start();
+var router = new WireMockRouter(server);
 
-server.MapGet("/hello", ctx => ctx.Response("Hello, world!"));
+router.MapGet("/hello", _ => "Hello, world!");
 
-// ...
+using var client = server.CreateClient();
+var result = await client.GetFromJsonAsync<string>("/hello");
+// Hello, world!
 ```
 
 ---
 
 ## Usage
 
-### Minimal Routing Example
+### Routing with route parameters
 
 ```csharp
-server.MapPost("/api/items", async ctx => {
-    var item = await ctx.BindJsonAsync<Item>();
+router.MapGet("/user/{id:int}", async requestInfo => {
+    var userId = requestInfo.RouteArgs["id"];
+    // var user = await ...
+    return user;
+});
+```
+
+
+### Strongly-Typed Request Info
+
+```csharp
+router.MapPost<Item>("/api/items", requestInfo => {
+    var item = requestInfo.Body!;
     // process item
-    return ctx.Json(new { success = true });
+    return Results.Json(new { success = true });
 });
 ```
 
 ### Supported Methods
 
-- `MapGet`, `MapPost`, `MapPut`, `MapDelete`, `MapPatch`, etc.
-
-### Strongly-Typed Request Info
-
-```csharp
-server.MapGet("/user/{id}", (WireMockRequestInfo req) => {
-    var userId = req.RouteValues["id"];
-    // ...
-});
-```
-
+- `MapGet`, `MapPost`, `MapPut`, `MapDelete`
 ---
 
 ## Documentation
