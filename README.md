@@ -9,6 +9,65 @@
 
 ---
 
+## Motivation
+
+While [WireMock.Net](https://github.com/WireMock-Net/WireMock.Net) is a powerful tool for HTTP mocking in .NET, its native API for defining routes and request handlers can be verbose and require significant boilerplate. Setting up even simple endpoints often involves multiple chained method calls, manual parsing of request data, and repetitive configuration, which can make tests harder to read and maintain.
+
+**WireMock.Net.Routing** addresses these pain points by introducing a concise, fluent, and minimal-API-inspired approach to routing. This makes your test code:
+
+- **More readable:** Route definitions are clear and expressive, closely resembling production minimal APIs.
+- **Easier to maintain:** Less boilerplate means fewer places for errors and easier refactoring.
+- **Faster to write:** Define routes and handlers in a single line, with strong typing and async support.
+
+### Example: Native WireMock.Net vs. WireMock.Net.Routing
+
+#### Native WireMock.Net
+
+```csharp
+server.Given(
+    Request.Create().WithPath("/hello").UsingGet()
+)
+.RespondWith(
+    Response.Create().WithBody("Hello, world!")
+);
+
+server.Given(
+    Request.Create().WithPath("/user/*").UsingGet()
+)
+.RespondWith(
+    Response.Create().WithCallback(request =>
+    {
+        var id = request.PathSegments[1];
+        // ...fetch user by id...
+        return new ResponseMessage { Body = $"User: {id}" };
+    })
+);
+```
+
+#### With WireMock.Net.Routing
+
+```csharp
+router.MapGet("/hello", _ => "Hello, world!");
+
+router.MapGet("/user/{id:int}", requestInfo =>
+{
+    var id = requestInfo.RouteArgs["id"];
+    // ...fetch user by id...
+    return $"User: {id}";
+});
+```
+
+With **WireMock.Net.Routing**, you get:
+
+- Minimal, one-line route definitions
+- Typed route parameters (e.g., `{id:int}`)
+- Direct access to parsed route arguments and request bodies
+- Async handler support
+
+This leads to more maintainable, scalable, and production-like test code.
+
+---
+
 ## Features
 
 - Minimal API-style route definitions for WireMock.Net
@@ -62,7 +121,6 @@ router.MapGet("/user/{id:int}", async requestInfo => {
     return user;
 });
 ```
-
 
 ### Strongly-Typed Request Info
 
