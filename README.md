@@ -1,6 +1,6 @@
 # WireMock.Net.Routing
 
-![NuGet](https://img.shields.io/nuget/v/WireMock.Net.Routing?style=flat-square)
+![NuGet](https://img.shields.io/nuget/v/GennadyGS.WireMock.Net.Routing?style=flat-square)
 ![Build](https://img.shields.io/github/actions/workflow/status/GennadyGS/WireMock.Net.Routing/build.yml?branch=master&style=flat-square)
 [![.NET](https://img.shields.io/badge/.NET-8.0%2B-blue.svg)](https://dotnet.microsoft.com/)
 ![License](https://img.shields.io/github/license/GennadyGS/WireMock.Net.Routing?style=flat-square)
